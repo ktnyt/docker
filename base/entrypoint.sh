@@ -7,14 +7,11 @@ fi
 
 useradd -M --shell $SHELL -u $LOCAL_USER_ID -o -c "" $USER
 gpasswd -a $USER sudo > /dev/null
-chsh -s /usr/bin/zsh $USER
 
 if [ ! -d $HOME ]; then
     mkdir $HOME
 fi
 chown -R $USER $HOME
 cd $HOME
-
-mv /tmp/zshrc $HOME/.zshrc
 
 exec /usr/sbin/gosu $USER "$@"
